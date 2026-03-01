@@ -213,7 +213,21 @@ jsPsych.init({
   auto_update_progress_bar: true,
 
   on_finish: function () {
-    jsPsych.data.get().localSave('csv', 'esports_data.csv');
+    var allData = jsPsych.data.get();
+
+    // Always save CSV locally as backup
+    allData.localSave('csv', 'esports_data.csv');
+
+    // Try sending to Google Sheets
+    if (typeof sendToGoogleSheets === 'function') {
+      sendToGoogleSheets(allData)
+        .then(function () {
+          console.log('✅ Data saved to Google Sheets.');
+        })
+        .catch(function (err) {
+          console.warn('Google Sheets submission failed:', err);
+        });
+    }
   }
 
 });

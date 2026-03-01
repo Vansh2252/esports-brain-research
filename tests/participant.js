@@ -19,6 +19,10 @@ var participant_info = {
     <fieldset>
       <legend>Personal Information</legend>
 
+      <label>Full Name <span style="color:#e74c3c">*</span></label><br>
+      <input name="name" type="text" required
+             placeholder="e.g. Vansh Sharma"><br><br>
+
       <label>Age <span style="color:#e74c3c">*</span></label><br>
       <input name="age" type="number" min="13" max="80" required
              placeholder="e.g. 22"><br><br>
@@ -75,6 +79,9 @@ var participant_info = {
 
       <label>Primary Game Title</label><br>
       <input name="game" placeholder="e.g. Valorant, CS2, League of Legends"><br><br>
+
+      <label>In-Game Name / Gamertag</label><br>
+      <input name="ign" placeholder="e.g. xNinja, TenZ"><br><br>
 
       <label>Game Genre</label><br>
       <select name="game_genre">
