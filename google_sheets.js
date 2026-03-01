@@ -11,7 +11,7 @@
 // ============================================================
 
 // ⬇️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ⬇️
-var GOOGLE_SHEET_URL = '';
+var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby9rBd53qjcKu68gULVPbpQuOCkq2EJVxlbvYxsZn9wSGSgjQYKL0FDKal2k76scw7g/exec';
 // Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
 
 /**
@@ -30,8 +30,10 @@ function sendToGoogleSheets(data) {
 
     return fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors', // no-cors prevents CORS errors but means we can't read the response
+        headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+        },
         body: JSON.stringify({
             data: rows,
             timestamp: new Date().toISOString()
