@@ -1,62 +1,44 @@
 // ============================================================
-//  GOOGLE APPS SCRIPT — Paste this into your Google Sheet's
-//  Apps Script editor (Extensions → Apps Script)
-//
-//  This receives experiment data and writes it to the sheet.
+//  GOOGLE SHEETS DATA SUBMISSION
+//  Sends experiment data to a Google Sheet via Apps Script
+//  
+//  SETUP INSTRUCTIONS:
+//  1. Create a new Google Sheet
+//  2. Go to Extensions → Apps Script
+//  3. Paste the code from google_apps_script.js
+//  4. Deploy as Web App (access: "Anyone")
+//  5. Copy the deployment URL and paste it below
 // ============================================================
 
-function doPost(e) {
-    try {
-        var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-        var payload = JSON.parse(e.postData.contents);
-        var rows = payload.data;
-        var timestamp = payload.timestamp;
+// ⬇️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ⬇️
+var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXoN3-jkgORxa1aC_2P0ReiXwi4z0d-LsTd2rm4hjEn1GxC2Muklg61MzgPIxpecv5gw/exec';
+// Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
 
-        if (!rows || rows.length === 0) {
-            return ContentService.createTextOutput(
-                JSON.stringify({ status: 'error', message: 'No data received' })
-            ).setMimeType(ContentService.MimeType.JSON);
-        }
+/**
+ * Send all experiment data to Google Sheets.
+ * Falls back to CSV download if the URL is not set or request fails.
+ */
+function sendToGoogleSheets(data) {
 
-        // Write headers if sheet is empty
-        if (sheet.getLastRow() === 0) {
-            var headers = Object.keys(rows[0]);
-            headers.unshift('submission_timestamp');
-            sheet.appendRow(headers);
-        }
-
-        // Get existing headers to maintain column order
-        var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-
-        // Write each row of data
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            var rowData = headers.map(function (header) {
-                if (header === 'submission_timestamp') return timestamp;
-                var value = row[header];
-                // Convert objects/arrays to JSON strings
-                if (typeof value === 'object' && value !== null) {
-                    return JSON.stringify(value);
-                }
-                return value !== undefined ? value : '';
-            });
-            sheet.appendRow(rowData);
-        }
-
-        return ContentService.createTextOutput(
-            JSON.stringify({ status: 'success', rowsAdded: rows.length })
-        ).setMimeType(ContentService.MimeType.JSON);
-
-    } catch (error) {
-        return ContentService.createTextOutput(
-            JSON.stringify({ status: 'error', message: error.toString() })
-        ).setMimeType(ContentService.MimeType.JSON);
+    if (!GOOGLE_SHEET_URL) {
+        console.warn('Google Sheets URL not configured. Falling back to CSV download.');
+        return Promise.reject('No URL configured');
     }
-}
 
-// Required for CORS preflight
-function doGet(e) {
-    return ContentService.createTextOutput(
-        JSON.stringify({ status: 'ok', message: 'Esports Brain Research data endpoint' })
-    ).setMimeType(ContentService.MimeType.JSON);
+    // Convert jsPsych data to a flat array of objects
+    var rows = data.values();
+
+    return fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors', // no-cors prevents CORS errors but means we can't read the response
+        headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+            data: rows,
+            timestamp: new Date().toISOString()
+        })
+    }).then(function () {
+        console.log('Data sent to Google Sheets successfully.');
+    });
 }
