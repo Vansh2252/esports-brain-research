@@ -1,0 +1,336 @@
+/* ===== ESPORTS BRAIN RESEARCH — EXPERIMENT STYLES ===== */
+
+/* ---------- BASE ---------- */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+/* jsPsych display area */
+.jspsych-display-element {
+    font-family: 'Inter', sans-serif;
+    color: #e0e0e0;
+}
+
+.jspsych-content-wrapper {
+    background: #0f1117;
+}
+
+.jspsych-content {
+    max-width: 900px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* ---------- PROGRESS BAR ---------- */
+#jspsych-progressbar-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    background: #1a1d28 !important;
+    border: none !important;
+    height: 4px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+}
+
+#jspsych-progressbar-container span {
+    display: none !important;
+}
+
+#jspsych-progressbar-inner {
+    background: linear-gradient(90deg, #6c5ce7, #00cec9) !important;
+    height: 4px !important;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.4s ease;
+}
+
+/* ---------- HEADINGS ---------- */
+h1,
+h2,
+h3 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #a0a0b8;
+}
+
+/* ---------- BUTTONS ---------- */
+.jspsych-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 28px;
+    margin: 6px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jspsych-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+.jspsych-btn:active {
+    transform: translateY(0);
+}
+
+/* ---------- FORM ELEMENTS ---------- */
+input,
+select,
+textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 10px 14px;
+    border: 1px solid #2d3048;
+    border-radius: 6px;
+    background: #1a1d28;
+    color: #e0e0e0;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+button[type="submit"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+/* ---------- FIELDSET ---------- */
+fieldset {
+    border: 1px solid #2d3048;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 16px 0;
+    background: #14161f;
+}
+
+legend {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #a855f7;
+    padding: 0 8px;
+}
+
+/* ---------- INSTRUCTION PAGES ---------- */
+.jspsych-instructions-nav {
+    margin-top: 20px;
+}
+
+.instruction-page {
+    text-align: left;
+    padding: 20px 40px;
+}
+
+.instruction-page h2 {
+    text-align: center;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.instruction-page ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instruction-page li {
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+}
+
+.instruction-page li::before {
+    content: '▸';
+    position: absolute;
+    left: 4px;
+    color: #6c5ce7;
+}
+
+.key-hint {
+    display: inline-block;
+    padding: 3px 12px;
+    background: #2d3048;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #00cec9;
+    font-size: 14px;
+    margin: 0 2px;
+}
+
+/* ---------- FIXATION CROSS ---------- */
+.fixation {
+    font-size: 60px;
+    font-weight: 700;
+    color: #555;
+}
+
+/* ---------- FEEDBACK ---------- */
+.feedback-correct {
+    color: #00b894;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.feedback-incorrect {
+    color: #e74c3c;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.feedback-rt {
+    color: #00cec9;
+    font-size: 22px;
+    margin-top: 8px;
+}
+
+/* ---------- STROOP BUTTONS ---------- */
+.jspsych-html-button-response-button {
+    margin: 4px !important;
+}
+
+/* ---------- DEBRIEF ---------- */
+.debrief-card {
+    background: #14161f;
+    border: 1px solid #2d3048;
+    border-radius: 14px;
+    padding: 32px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.debrief-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.debrief-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+.debrief-table th,
+.debrief-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2d3048;
+}
+
+.debrief-table th {
+    color: #a855f7;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.debrief-table td {
+    font-size: 15px;
+}
+
+.debrief-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- CANVAS ---------- */
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+/* ---------- STIMULUS STYLES ---------- */
+.stimulus-letter {
+    font-size: 72px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Inter', monospace;
+}
+
+.flanker-stimulus {
+    font-size: 64px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: monospace;
+    letter-spacing: 12px;
+}
+
+.task-cue {
+    font-size: 20px;
+    font-weight: 600;
+    color: #a855f7;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.task-number {
+    font-size: 72px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* ---------- CATCH TRIAL (STOP) ---------- */
+.stop-signal {
+    color: #e74c3c;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+/* ---------- FULLSCREEN ---------- */
+.jspsych-fullscreen-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: #fff;
+    cursor: pointer;
+}
